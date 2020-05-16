@@ -105,5 +105,22 @@ class AsciiCanvasSpec extends Specification {
         canvas.toString() == expStr
     }
 
+    def "test undo operation"() {
+        given: "an empty canvas"
+        Canvas canvas = new AsciiCanvas(10, 5, '*' as char, 'x' as char)
+
+        when: "i draw a line on the canvas"
+        canvas.drawLine(2, 3, 5, 3)
+
+        and: "i undo the previous operation"
+        canvas.undoLastCommand()
+        def expStr = getClass().getResource("/empty_canvas.txt").text
+
+        then: "i still have an empty canvas"
+        expStr == canvas.toString()
+
+
+    }
+
 
 }

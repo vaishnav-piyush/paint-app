@@ -15,7 +15,7 @@
 ##Instructions
 - Run command ```java -jar target/paint-app-1.0-SNAPSHOT.jar```
 
-#Guide to use the program
+#Guide to use the programx           cx  
 Following commands are supported in this command line paint-app:
 - Create canvas: `C width height` 
     * Example: `C 20 10`

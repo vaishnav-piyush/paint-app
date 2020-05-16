@@ -40,4 +40,9 @@ public interface Canvas {
      * @throws IOException
      */
     void readFromFile(String filePath) throws IOException;
+
+    /**
+     * Undoes the previous operation and restores the canvas to previous saved snapshot
+     */
+    void undoLastCommand();
 }

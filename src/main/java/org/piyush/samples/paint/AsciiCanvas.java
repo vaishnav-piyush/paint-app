@@ -20,6 +20,7 @@ public class AsciiCanvas implements Canvas {
     private char backgroundChar = DEFAULT_BACKGROUND_CHAR;
     private char lineChar = DEFAULT_LINE_CHAR;
     private char[][] canvas;
+    private String previousSnapshot;
 
     public AsciiCanvas(int width, int height, char backgroundChar, char lineChar) {
         this.backgroundChar = backgroundChar;
@@ -79,6 +80,8 @@ public class AsciiCanvas implements Canvas {
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
+        //make sure current state is saved in previousSnapshot
+        previousSnapshot = toString();
         //check if co-ordinates fit into the canvas
         if (!fitsInCanvas(x1, y1, x2, y2))
             throw new IllegalArgumentException(String.format("Co-ordinates should be within the canvas (1, 1), (%d, %d)", width, height));
@@ -109,6 +112,8 @@ public class AsciiCanvas implements Canvas {
 
     @Override
     public void drawRectangle(int x1, int y1, int x2, int y2) {
+        //make sure current state is saved in previousSnapshot
+        previousSnapshot = toString();
         //draw the 4 lines of a rectangle
         drawLine(x1, y1, x2, y1);
         drawLine(x1, y1, x1, y2);
@@ -164,6 +169,19 @@ public class AsciiCanvas implements Canvas {
             y++;
         }
         fr.close();
+    }
+
+    private void restoreFromString(String canvasString) {
+        List<String> rows = Arrays.asList(canvasString.split("\n"));
+        for(int y=0; y<canvas.length; y++) {
+            canvas[y] = rows.get(y).toCharArray();
+        }
+    }
+
+    @Override
+    public void undoLastCommand() {
+        //generate new canvas from previousSnpashot
+        restoreFromString(previousSnapshot);
     }
 
 }
