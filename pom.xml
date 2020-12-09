@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spock.version>1.1-groovy-2.4-rc-2</spock.version>
-        <groovy.version>2.4.7</groovy.version>
+        <groovy.version>2.4.21</groovy.version>
         <lombok.version>1.18.2</lombok.version>
         <groovy.version>2.5.8</groovy.version>
         <picocli.version>4.2.0</picocli.version>
